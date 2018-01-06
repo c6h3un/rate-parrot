@@ -29,15 +29,12 @@ func readFromText(){
 	defer resp.Body.Close()
 
 	scanner := bufio.NewScanner(resp.Body)
-	//var title []string
 
 	i:=0
 	for scanner.Scan() {
 		l := scanner.Text()
 		if i == 0 {
-			//title = twRateSplit(l)
 			i+=1
-			//fmt.Println(title[0])
 		} else {
 			line := twRateSplit(l)
 			rateObj := toTwRateObj(line)
@@ -49,8 +46,6 @@ func readFromText(){
 	if err := scanner.Err(); err != nil {
 		log.Fatal(err)
 	}
-
-	//fmt.Println(twRates["JPY"].inCash, twRates["JPY"].outCash);
 }
 func toTwRateObj(s []string) twRate{
 	var rate twRate
@@ -120,10 +115,6 @@ func rateCallbackHandler(w http.ResponseWriter, r *http.Request) {
 		http.NotFound(w, r)
 		return
 	}
-	/* if req.URL.Path != "/rate/" {
-                http.NotFound(w, req)
-                return
-    } */
 	//fmt.Fprint(w, "USD - ", twRates["USD"].inCash, twRates["USD"].outCash, "\n");
 	//fmt.Fprint(w, "JPY - ", twRates["JPY"].inCash, twRates["JPY"].outCash, "\n");
 }
