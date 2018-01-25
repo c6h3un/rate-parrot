@@ -110,7 +110,7 @@ func rateCallbackHandler(w http.ResponseWriter, r *http.Request) {
 	cur := strings.TrimPrefix(r.URL.Path, "/rate/")
 	_, ok := twRates[cur]
 	if ok == true {
-		fmt.Fprint(w, cur, " - ", twRates[cur].inCash, twRates[cur].outCash, "\n");
+		fmt.Fprint(w, cur, " - ", twRates[cur].inCash, twRates[cur].outCash, twRates[cur].inSpot, twRates[cur].outSpot, "\n");
 	} else {
 		http.NotFound(w, r)
 		return
